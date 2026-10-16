@@ -1,0 +1,21 @@
+# 本地的音频 / 封面 / 歌词不随仓库分发：
+# 体积大，而且多数有版权（示例文件里就有商业歌曲和专辑封面）。
+# 目录用 .gitkeep 占位，结构与用法见 README。
+assets/audio/*
+!assets/audio/.gitkeep
+assets/cover/*
+!assets/cover/.gitkeep
+assets/lyrics/*
+!assets/lyrics/.gitkeep
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 临时文件
+*.log
+*.tmp

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Music Player · 歌词滚动音乐播放器</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- 动态背景（取自封面） -->
+    <div class="bg-blur" id="bgBlur"></div>
+
+    <main class="player">
+      <!-- 左侧：封面 + 信息 + 控制 -->
+      <section class="left-pane">
+        <div class="cover-wrap">
+          <div class="cover" id="cover">
+            <div class="cover-placeholder">♪</div>
+          </div>
+        </div>
+
+        <div class="track-info">
+          <h1 class="title" id="trackTitle">未选择歌曲</h1>
+          <p class="artist" id="trackArtist">—</p>
+        </div>
+
+        <div class="progress">
+          <span class="time" id="curTime">00:00</span>
+          <div class="progress-bar" id="progressBar">
+            <div class="progress-buffered" id="progressBuffered"></div>
+            <div class="progress-played" id="progressPlayed"></div>
+            <div class="progress-handle" id="progressHandle"></div>
+          </div>
+          <span class="time" id="durTime">00:00</span>
+        </div>
+
+        <div class="controls">
+          <button class="btn icon" id="modeBtn" title="播放模式">
+            <span id="modeIcon">🔁</span>
+          </button>
+          <button class="btn icon" id="prevBtn" title="上一首">⏮</button>
+          <button class="btn play" id="playBtn" title="播放/暂停">▶</button>
+          <button class="btn icon" id="nextBtn" title="下一首">⏭</button>
+          <div class="volume">
+            <button class="btn icon" id="muteBtn" title="静音">🔊</button>
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" value="1" />
+          </div>
+        </div>
+      </section>
+
+      <!-- 右侧：歌词滚动 -->
+      <section class="right-pane">
+        <div class="lyrics-wrap" id="lyricsWrap">
+          <div class="lyrics" id="lyrics">
+            <p class="lyric-line placeholder">暂无歌词</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- 底部：播放列表 + 导入 -->
+    <footer class="bottom">
+      <div class="playlist-head">
+        <h2>播放列表</h2>
+        <div class="import">
+          <label class="btn small" for="audioInput">+ 导入歌曲 / 歌词</label>
+          <input type="file" id="audioInput" accept="audio/*,.lrc,image/*" multiple hidden />
+          <label class="btn small" for="folderInput">+ 导入文件夹</label>
+          <input type="file" id="folderInput" webkitdirectory directory multiple hidden />
+          <label class="btn small" for="lrcInput">+ 当前歌词(.lrc)</label>
+          <input type="file" id="lrcInput" accept=".lrc,text/plain" hidden />
+          <button class="btn small is-hidden" id="clearBtn" title="移除导入的曲目并清空本地曲库">清空曲库</button>
+        </div>
+      </div>
+      <ul class="playlist" id="playlist"></ul>
+    </footer>
+  </div>
+
+  <div class="drop-hint" id="dropHint">
+    <div class="drop-hint-inner">
+      松开即可导入
+      <span>音频、同名 .lrc 与封面会自动配对，内嵌标签会自动读取</span>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <audio id="audio" preload="metadata"></audio>
+
+  <script src="js/vendor/jsmediatags.min.js"></script>
+  <script src="js/lyrics.js"></script>
+  <script src="js/metadata.js"></script>
+  <script src="js/library.js"></script>
+  <script src="js/playlist.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
