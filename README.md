@@ -119,3 +119,9 @@ MusicPlayer/
 ```
 
 支持一行多个时间标签（同一句出现在多个时间点）。
+
+## 项目文档
+
+- [PRD.md](PRD.md) —— 需求、验收标准与已知不足
+- [TECH_DESIGN.md](TECH_DESIGN.md) —— 架构、数据模型、关键流程与防回归清单
+- [AGENTS.md](AGENTS.md) —— 面向 AI 编码代理的协作约定（目录职责、约定、验证方法）
